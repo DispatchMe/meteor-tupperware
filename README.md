@@ -1,5 +1,7 @@
 # chriswessels/meteor-tupperware
 
+Notice: This package is no longer maintained. I recommend using the following alternative: https://github.com/jshimko/meteor-launchpad
+
 This is a base Docker image that allows you to bundle your [Meteor.js](https://www.meteor.com) application into a lean, production-ready Docker image that you can deploy across your containerised infrastructure.
 
 [![Docker Repository on Quay.io](https://quay.io/repository/chriswessels/meteor-tupperware/status "Docker Repository on Quay.io")](https://quay.io/repository/chriswessels/meteor-tupperware)
@@ -44,7 +46,12 @@ Assuming you have Docker running, you can build an image of your Meteor.js app b
 
 ## Running your app image
 
-The root process of the image will be set to the Node.js entrypoint for your Meteor application, so you can pass runtime settings straight into `docker run -e`, or bake them into your image with `ENV` directives in your Dockerfile. Node.js will listen on port 80 inside the container, but you can bind this to any port on the host.
+The root process of the image will be set to the Node.js entrypoint for your Meteor application, so you can pass runtime settings straight into `docker run -e`, or bake them into your image with `ENV` directives in your Dockerfile.
+
+Node.js will listen on port 80 inside the container, but you can bind this to any port on the host. You can also specify a different internal port if you need to like this:
+
+    FROM    quay.io/chriswessels/meteor-tupperware
+    ENV     PORT=8080
 
 Example of passing options into `docker run` at runtime:
 
